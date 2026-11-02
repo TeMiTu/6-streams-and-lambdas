@@ -20,7 +20,7 @@ public class PersonStreams {
      */
     public Stream<Person> getAdults(Stream<Person> persons) {
         // Hint: you can call the `age()` method on a Person object to get the age.
-        return null; // TODO
+        return persons.filter(henkilo -> henkilo.age() >= 18);
     }
 
     /**
@@ -38,7 +38,7 @@ public class PersonStreams {
          * create new Person objects with incremented ages. The name and age of a Person
          * object can be accessed using the `name()` and `age()` methods.
          */
-        return null; // TODO
+        return persons.map(henkilo -> new Person(henkilo.name(), henkilo.age() + 1));
     }
 
     /**
@@ -52,7 +52,12 @@ public class PersonStreams {
      * @param csvLines the stream of lines from a CSV file
      * @return a stream of Person objects
      */
+    private Person luoHenkilo(String rivi){
+        String[] osat = rivi.split(",");
+        return new Person(osat[0], Integer.parseInt(osat[1]));
+    }
+
     public Stream<Person> csvToPersons(Stream<String> csvLines) {
-        return null; // TODO
+        return csvLines.map(rivi -> luoHenkilo(rivi));
     }
 }
