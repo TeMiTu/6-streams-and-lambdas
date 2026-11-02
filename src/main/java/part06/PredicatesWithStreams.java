@@ -1,5 +1,6 @@
 package part06;
 
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -20,7 +21,7 @@ public class PredicatesWithStreams {
      */
     public boolean allPositive(IntStream numbers) {
         // hint: see the `allMatch()` method
-        return false; // TODO
+        return numbers.allMatch(numero -> numero > 0);
     }
 
     /**
@@ -35,7 +36,14 @@ public class PredicatesWithStreams {
         /*
          * hint: you can chain the `filter()`, `findFirst()` and `isPresent()` methods.
          */
-        return -1; // TODO
+        OptionalInt eka = numbers.filter(numero -> numero > 0).findFirst();
+        if(eka.isPresent()){
+            return eka.getAsInt();
+        }
+        else{
+            return 0;
+        }
+       
     }
 
     /**
@@ -46,6 +54,6 @@ public class PredicatesWithStreams {
      */
     public boolean containsNoNulls(Stream<String> strings) {
         // hint: see the `noneMatch()` method
-        return false; // TODO
+        return strings.noneMatch(jono -> jono == null); 
     }
 }
