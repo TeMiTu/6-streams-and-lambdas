@@ -29,7 +29,7 @@ public class PizzaStreams {
          * You can use the toppings() method of a Pizza to get the toppings as a
          * list of strings.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(taytteet -> taytteet.toppings().contains("pineapple")); 
     }
 
     /**
@@ -43,7 +43,7 @@ public class PizzaStreams {
          * Like the previous method, but this time you must select the pizzas
          * that do not have "pineapple" as a topping.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(taytteet -> !taytteet.toppings().contains("pineapple")); 
     }
 
     /**
@@ -60,7 +60,7 @@ public class PizzaStreams {
          * that have the given topping. You can assume that toppings are
          * always in lower case.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(taytteet -> taytteet.toppings().contains(topping));
     }
 
     /**
@@ -71,6 +71,19 @@ public class PizzaStreams {
      * @param toppings the toppings to look for
      * @return a stream of pizzas that have any of the given toppings
      */
+    private boolean tarkistaTayte(Pizza pitsa, List<String> toppings){
+        for (String tayte : toppings){
+            if(pitsa.toppings().contains(tayte)){
+                return true;
+            }
+            
+        }
+        
+                return false;
+            
+        
+        
+    }
     public Stream<Pizza> getPizzasWithAnyOfToppings(Stream<Pizza> pizzas, List<String> toppings) {
         /*
          * Like the previous method, but this time you must select the pizzas
@@ -81,7 +94,7 @@ public class PizzaStreams {
          * of the given toppings and then use that method here. You are also allowed to
          * add new methods in the Pizza class.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(pitsa ->tarkistaTayte(pitsa, toppings)); 
     }
 
     /**
@@ -100,7 +113,7 @@ public class PizzaStreams {
          * https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream
          * /Stream.html#sorted(java.util.Comparator)
          */
-        return null; // TODO: implement this method
+        return pizzas.sorted((pizza1, pizza2) -> Double.compare(pizza1.price(), pizza2.price())); 
     }
 
     /**
@@ -118,6 +131,6 @@ public class PizzaStreams {
          * compareToIgnoreCase() method of the String class to compare the names of the
          * pizzas.
          */
-        return null; // TODO: implement this method
+        return pizzas.sorted((pizza1, pizza2) -> pizza1.name().compareToIgnoreCase(pizza2.name())); 
     }
 }
