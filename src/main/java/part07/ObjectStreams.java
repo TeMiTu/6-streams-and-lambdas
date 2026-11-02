@@ -1,6 +1,7 @@
 package part07;
 
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Stream;
 
 import person.Person;
@@ -19,7 +20,7 @@ public class ObjectStreams {
      * @return a list of the lengths of the strings
      */
     public List<Integer> getLengths(Stream<String> strings) {
-        return null; // TODO
+        return strings.map(jono -> jono.length()).toList();
     }
 
     /**
@@ -37,7 +38,7 @@ public class ObjectStreams {
      */
     public List<Integer> getAges(Stream<Person> persons) {
         // Hint: This method is very similar to the getLengths() method above!
-        return null; // TODO
+        return persons.map(iat -> iat.age()).toList(); 
     }
 
     /**
@@ -52,7 +53,7 @@ public class ObjectStreams {
      * @return a list of the names
      */
     public List<String> getNames(Stream<Person> persons) {
-        return null; // TODO
+        return persons.map(nimet -> nimet.name()).toList();
     }
 
     /**
@@ -67,6 +68,13 @@ public class ObjectStreams {
          * Hint: you can use the `getAges()` method above to get a stream of the ages.
          * You may remember `mapToInt()` and `average` from previous exercises.
          */
-        return -1; // TODO
+        OptionalDouble keskiarvo = persons.mapToInt(henkilo -> henkilo.age()).average();
+        if (keskiarvo.isPresent()){
+            return keskiarvo.getAsDouble();
+        }
+        else{
+            return 0;
+        }
+        
     }
 }
